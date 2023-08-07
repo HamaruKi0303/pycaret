@@ -1,0 +1,19 @@
+version: '3'
+services:
+  python3:
+    image: pycaret/full
+    working_dir: '/work'
+    tty: true
+    volumes:
+      - .:/work
+
+    ports:
+    - 8888:8888
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [gpu]
